@@ -1,0 +1,58 @@
+body {
+    font-family: futura-pt,Arial,Helvetica,sans-serif;
+    font-size: 21px;
+    line-height: 1.68em;
+    text-transform: none;
+    letter-spacing: .03em;
+    font-weight: 400;
+    font-style: normal;
+    color: #000;
+    margin-left: 45px;
+    margin-right: 45px;
+    }
+
+.menu-item-title {
+    font-size: 1.1em;
+    font-weight: 700;
+    line-height: 1.2em;
+    }
+
+.menu-item-form {
+  float: right;
+  margin-left: 40px;
+}
+
+.menu-section-title {
+    font-size: 1.5em;
+    margin-bottom: 21px;
+    text-align: center;
+}
+
+.center {
+  text-transform: center;
+}
+
+.q_button {
+  height: 20px;
+  width: 20px;
+}
+
+h1 {
+    color: #121212;
+}
+
+h1 {
+    font-family: futura-pt,Arial,Helvetica,sans-serif;
+    font-size: 64px;
+    line-height: 1.5em;
+    text-transform: none;
+    letter-spacing: .02em;
+    font-weight: 400;
+    font-style: normal;
+    -webkit-margin-before: 0.83em;
+    -webkit-margin-after: 0.83em;
+}
+
+h1, h2, h3 {
+    text-rendering: optimizeLegibility;
+}
