@@ -116,9 +116,12 @@
 
     function decreaseNumber(dishId)
     {
-      if (document.getElementById(dishId).value > 0)
+      if (document.getElementById(dishId).value > 10)
       {
         document.getElementById(dishId).value = document.getElementById(dishId).value - 1;
+      } else if (document.getElementById(dishId).value == 10)
+      {
+        document.getElementById(dishId).value = '';
       }
     }
 
@@ -126,7 +129,7 @@
     {
       if (document.getElementById(dishId).value == '')
       {
-        document.getElementById(dishId).value = 1;
+        document.getElementById(dishId).value = 10;
       } else if (document.getElementById(dishId).value < 9999)
       {
         document.getElementById(dishId).value = parseInt(document.getElementById(dishId).value) + 1;
