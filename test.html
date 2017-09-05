@@ -6,6 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
 </head>
 <body>
 
@@ -31,7 +34,8 @@
       Price: 107 SEK <br>
       <input class="q_text" type="text" name="" value="" id="dish_1"
         placeholder="0" size="5" maxlength="4"
-        onkeyup="validateNumber(this)" onclick="validateNumber(this)" onchange="validateNumber(this)" >
+        onblur="validateNumberOnBlur(this)" onkeyup="validateNumber(this)"
+        onclick="validateNumber(this)" onchange="validateNumber(this)" >
       <button class="q_button" type="button" name="button" onclick="decreaseNumber('dish_1')"> - </button>
       <button class="q_button" type="button" name="button" onclick="increaseNumber('dish_1')"> + </button>
     </div>
@@ -44,8 +48,8 @@
       Price: 107 SEK <br>
       <input class="q_text" type="text" name="" value="" id="dish_2"
         placeholder="0" size="5" maxlength="4"
-        onkeyup="validateNumber(this)" onclick="validateNumber(this)" onchange="validateNumber(this)" >
-      <button class="q_button" type="button" name="button" onclick="decreaseNumber('dish_2')"> - </button>
+        onblur="validateNumberOnBlur(this)" onkeyup="validateNumber(this)"
+        onclick="validateNumber(this)" onchange="validateNumber(this)" >      <button class="q_button" type="button" name="button" onclick="decreaseNumber('dish_2')"> - </button>
       <button class="q_button" type="button" name="button" onclick="increaseNumber('dish_2')"> + </button>
     </div>
     <div class="menu-item-title">Mexican Taco Bowl</div>
@@ -57,7 +61,8 @@
       <span class="price">Price: 109 SEK</span><br>
       <input class="q_text" type="text" name="" value="" id="dish_3"
         placeholder="0" size="5" maxlength="4"
-        onkeyup="validateNumber(this)" onclick="validateNumber(this)" onchange="validateNumber(this)" >
+        onblur="validateNumberOnBlur(this)" onkeyup="validateNumber(this)"
+        onclick="validateNumber(this)" onchange="validateNumber(this)" >
       <button class="q_button" type="button" name="button" onclick="decreaseNumber('dish_3')"> - </button>
       <button class="q_button" type="button" name="button" onclick="increaseNumber('dish_3')"> + </button>
     </div>
@@ -101,10 +106,41 @@
   <script type="text/javascript" >
     function validateNumber(object)
     {
-      console.log(isNaN(object.value));
       if (isNaN(object.value))
       {
         object.value = object.value.replace(/[^0-9]/g, '');
+      }
+
+      if (object.value == 0)
+      {
+        object.value = '';
+      }
+
+    }
+
+    function validateNumberOnBlur(object)
+    {
+      if (object.value < 10  && object.value != '')
+      {
+        swal({
+          title: 'Oops...',
+          text: 'Min order is 10!',
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#2dbc36',
+          confirmButtonText: 'Yes, please change to 10!',
+          cancelButtonText: 'No, please change to 0!',
+          closeOnConfirm: true,
+          closeOnCancel: true,
+        },
+        function (isConfirm) {
+          if (isConfirm) {
+            object.value = 10;
+          } else {
+            object.value = '';
+          }
+        });
+
       }
 
       if (object.value == 0)
@@ -127,7 +163,7 @@
 
     function increaseNumber(dishId)
     {
-      if (document.getElementById(dishId).value == '')
+      if (document.getElementById(dishId).value == '' || document.getElementById(dishId).value < 9)
       {
         document.getElementById(dishId).value = 10;
       } else if (document.getElementById(dishId).value < 9999)
