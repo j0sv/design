@@ -29,9 +29,11 @@
   <div>
     <div class="menu-item-form">
       Price: 107 SEK <br>
-      <input class="q_text" type="text" name="" value="" placeholder="0" size="5" maxlength="4">
-      <button class="q_button" type="button" name="button"> - </button>
-      <button class="q_button" type="button" name="button"> + </button>
+      <input class="q_text" type="text" name="" value="" id="dish_1"
+        placeholder="0" size="5" maxlength="4"
+        onkeyup="validateNumber(this)" onclick="validateNumber(this)" onchange="validateNumber(this)" >
+      <button class="q_button" type="button" name="button" onclick="decreaseNumber('dish_1')"> - </button>
+      <button class="q_button" type="button" name="button" onclick="increaseNumber('dish_1')"> + </button>
     </div>
     <div class="menu-item-title">Rainbow Salad</div>
     <div>Luxurious playful salad with loads of colorful greens. Served with green hummus, creamy cashew-dill-sauce, fennel, avocado, polka beat and nut n’ seed-sprinkle.</div>
@@ -40,9 +42,11 @@
   <div>
     <div class="menu-item-form">
       Price: 107 SEK <br>
-      <input class="q_text" type="text" name="" value="" placeholder="0" size="5" maxlength="4">
-      <button class="q_button" type="button" name="button"> - </button>
-      <button class="q_button" type="button" name="button"> + </button>
+      <input class="q_text" type="text" name="" value="" id="dish_2"
+        placeholder="0" size="5" maxlength="4"
+        onkeyup="validateNumber(this)" onclick="validateNumber(this)" onchange="validateNumber(this)" >
+      <button class="q_button" type="button" name="button" onclick="decreaseNumber('dish_2')"> - </button>
+      <button class="q_button" type="button" name="button" onclick="increaseNumber('dish_2')"> + </button>
     </div>
     <div class="menu-item-title">Mexican Taco Bowl</div>
     <div>Taco flavored sunflower mix with tomato and mango salsa, coriander, guacamole, cashew sour cream, greens and crunchy nachos.</div>
@@ -50,10 +54,12 @@
   <br>
   <div>
     <div class="menu-item-form">
-      <span class="price">Price: 107 SEK</span><br>
-      <input class="q_text" type="text" name="" value="" placeholder="0" size="5" maxlength="4">
-      <button class="q_button" type="button" name="button"> - </button>
-      <button class="q_button" type="button" name="button"> + </button>
+      <span class="price">Price: 109 SEK</span><br>
+      <input class="q_text" type="text" name="" value="" id="dish_3"
+        placeholder="0" size="5" maxlength="4"
+        onkeyup="validateNumber(this)" onclick="validateNumber(this)" onchange="validateNumber(this)" >
+      <button class="q_button" type="button" name="button" onclick="decreaseNumber('dish_3')"> - </button>
+      <button class="q_button" type="button" name="button" onclick="increaseNumber('dish_3')"> + </button>
     </div>
     <div class="menu-item-title">Creamy Basil Pasta with Olives and Herbs</div>
     <div>Zucchini and kelp noodle pasta in creamy pumpkin-basil-sauce. Served with olive tapenade, dijon-vinaigrette, avocado, spring onions and fresh herbs.</div>
@@ -91,6 +97,44 @@
     <button class="button" type="button" name="button"> Back </button>
     <button class="button" type="button" name="button"> Next </button>
   </div>
+
+  <script type="text/javascript" >
+    function validateNumber(object)
+    {
+      console.log(isNaN(object.value));
+      if (isNaN(object.value))
+      {
+        object.value = object.value.replace(/[^0-9]/g, '');
+      }
+
+      if (object.value == 0)
+      {
+        object.value = '';
+      }
+
+    }
+
+    function decreaseNumber(dishId)
+    {
+      if (document.getElementById(dishId).value > 0)
+      {
+        document.getElementById(dishId).value = document.getElementById(dishId).value - 1;
+      }
+    }
+
+    function increaseNumber(dishId)
+    {
+      if (document.getElementById(dishId).value == '')
+      {
+        document.getElementById(dishId).value = 1;
+      } else if (document.getElementById(dishId).value < 9999)
+      {
+        document.getElementById(dishId).value = parseInt(document.getElementById(dishId).value) + 1;
+      }
+
+    }
+
+  </script>
 
 
 </body>
